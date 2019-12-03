@@ -1,0 +1,7 @@
+.formsStyle {
+    border:1px solid;
+    border-radius:10px;
+    padding:10px;
+    background-image:linear-gradient(to right, #7b64e9, #008bfa, #00a7f5, #00bce5, #70ccd5);
+    
+}

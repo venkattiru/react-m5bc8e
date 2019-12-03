@@ -1,0 +1,10 @@
+.loginDiv{
+    width:100vw;
+    height: 100vh;
+    padding:10%;
+    background-image: linear-gradient(to bottom, #64e3e9, #75dec4, #94d69e, #b6ca80, #d5bb70);
+}
+.invalidusr{
+    color:red;
+    font-weight: bold;
+}
