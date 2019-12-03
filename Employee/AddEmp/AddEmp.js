@@ -78,7 +78,7 @@ class AddEmp extends React.Component{
         return(
             <div>
             
-            <Header {...this.props.location.state.newUsr}/>
+            <Header />
             
       <Form className="container formsStyle">
       <FormGroup row>

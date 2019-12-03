@@ -78,7 +78,7 @@ loginAction =() =>{
     .then(res =>{
 console.log(res);
 if(res.data === "Valid user"){
-    this.props.history.push('/addemp',{newUsr});
+    this.props.history.push('/addemp');
     this.props.setuser(this.state.newUsr);
 }else{
     this.invusr();
