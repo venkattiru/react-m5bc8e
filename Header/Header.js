@@ -28,6 +28,7 @@ import './Header.css';
               isOpen :false
           }
           this.toggle =this.toggle.bind(this);
+          this.logout = this.logout.bind(this);
       }
  
  componentWillMount(props){
@@ -35,7 +36,9 @@ import './Header.css';
  }
    
 toggle = () => this.setState({isOpen : !this.state.isOpen});
-logout = ()=> this.props.history.push('/login');
+logout = ()=> {
+  this.props.history.push('/login');
+}
 
 render(){
     let {user} = this.props;
