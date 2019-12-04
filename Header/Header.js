@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser,faBullseye,faPowerOff } from "@fortawesome/free-solid-svg-icons";
@@ -37,7 +37,7 @@ import './Header.css';
    
 toggle = () => this.setState({isOpen : !this.state.isOpen});
 logout = ()=> {
-  this.props.history.push('/login');
+  this.props.router.push('/login');
 }
 
 render(){

@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Organization from './Organization/Organization';
-import AddEmp from './Employee/AddEmp/AddEmp'
+import AddEmp from './Employee/AddEmp/AddEmp';
+import Header from './Header/Header';
 import ViewEmployee from './Employee/ViewEmployee/ViewEmployee';
 import Login from './Login/Login';
 import ReactDOM,{render} from 'react-dom';   
@@ -32,6 +33,7 @@ class App extends Component {
               <Route  path='/organize' component={Organization} />
               <Route  path='/addemp' component={AddEmp} />
               <Route  path='/viewemp' component={ViewEmployee} /> 
+              <Route path='/header' component={Header}/>
           </Switch>
     </Router>
     );
