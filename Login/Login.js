@@ -81,7 +81,7 @@ if(res.data === "Admin"){
     this.props.history.push('/addemp');
     this.props.setuser(this.state.newUsr);
     this.props.setrole(res.data);
-}else if(res.data === "user"){
+}else if(res.data === "User"){
   this.props.history.push('/viewemp');
     this.props.setuser(this.state.newUsr);
     this.props.setrole(res.data);

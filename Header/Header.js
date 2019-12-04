@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router'
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser,faBullseye,faPowerOff } from "@fortawesome/free-solid-svg-icons";
@@ -38,7 +38,7 @@ import './Header.css';
    
 toggle = () => this.setState({isOpen : !this.state.isOpen});
 logout = ()=> {
-  this.props.router.push('/login');
+  this.props.history.push('/login');
 }
 
 render(){
@@ -95,4 +95,4 @@ const mapStateToProps = (state) => {
 
  
 
-export default  connect(mapStateToProps)(Header);
+export default  withRouter(connect(mapStateToProps)(Header));

@@ -114,7 +114,7 @@ axios.put(`http://localhost:8020/upEmp`,{id,name,Project,selgen,SQ,scAns})
             <div>
             
             <Header />
-            
+            {this.props.role =="Admin" ?
       <Form className="container formsStyle">
       <FormGroup row>
               <Label for="associateID" sm={4}  className="text-center">Associate ID</Label>
@@ -173,10 +173,17 @@ axios.put(`http://localhost:8020/upEmp`,{id,name,Project,selgen,SQ,scAns})
             </div>
             
       </Form>
+      :<p className="text-center">Only Admin can add employee </p>}
       </div>
           );
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+       user: state.user,
+       role:state.role
+    }
+ }
     
-export default  (AddEmp);
+export default  connect(mapStateToProps)(AddEmp);

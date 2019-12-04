@@ -47,7 +47,7 @@ delEmp = (ev) => {
     })
 }
     renderTableHeader() {
-        if(this.state.emp.length >1){
+        if(this.state.emp.length >1 ){
         let header = Object.keys(this.state.emp[0])
         return header.map((key, index) => {
             if(key !== "SQ" && key !== "scAns" && key !== "sq" && key !== "project"){
@@ -118,8 +118,7 @@ delEmp = (ev) => {
               <Table responsive bordered hover>
                   <thead>
                   <tr>{this.renderTableHeader()}
-                  <th>Update</th>
-                  <th>Delete</th>
+                  
                   </tr>
                   </thead>
                  <tbody>
