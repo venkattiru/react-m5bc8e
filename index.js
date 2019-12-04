@@ -27,6 +27,7 @@ class App extends Component {
       <p className="d-none">Login here</p>
     </div>  
     <Switch>
+    
               <Route path='/login' component ={Login} />
               <Route  path='/organize' component={Organization} />
               <Route  path='/addemp' component={AddEmp} />
