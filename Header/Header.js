@@ -56,12 +56,7 @@ render(){
             <DropdownItem tag={Link} to="/addemp">
               Add Employee
             </DropdownItem>
-            <DropdownItem tag={Link} to="/uptemp">
-              Update Employee
-            </DropdownItem>
-            <DropdownItem tag={Link} to="/delemp">
-              Delete a Employee
-            </DropdownItem>
+            
             <DropdownItem tag={Link} to="/viewemp">
               View Employee List
             </DropdownItem>
@@ -81,7 +76,8 @@ render(){
   }  
 const mapStateToProps = (state) => {
     return {
-       user: state.user
+       user: state.user,
+       role:state.role
     }
  }
 

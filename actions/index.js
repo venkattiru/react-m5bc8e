@@ -6,3 +6,11 @@ export function setuser(user) {
 
     }
  }
+ export function setrole(role) {
+  console.log("in role action")
+    return {
+       type: 'SET-ROLE',
+       payload: role
+
+    }
+ }

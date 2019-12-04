@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {setuser} from '../actions/index';
+import {setuser,setrole} from '../actions/index';
 import {connect} from 'react-redux'
 
 
@@ -77,10 +77,16 @@ loginAction =() =>{
     axios.post(`http://localhost:8020/Login`,{newUsr,newPass})
     .then(res =>{
 console.log(res);
-if(res.data === "Valid user"){
+if(res.data === "Admin"){
     this.props.history.push('/addemp');
     this.props.setuser(this.state.newUsr);
-}else{
+    this.props.setrole(res.data);
+}else if(res.data === "user"){
+  this.props.history.push('/viewemp');
+    this.props.setuser(this.state.newUsr);
+    this.props.setrole(res.data);
+}
+else{
     this.invusr();
 }
     })
@@ -99,7 +105,7 @@ render(){
         <Col sm={4}>
         <Input type="text" name="username" id="userId" placeholder="Enter username" onChange={e  => this.handleChangeuser(e)}/>
         </Col>
-        <Label sm={4} className="text-center invalidusr">Invalid user</Label>
+        {this.state.showinvalid && <Label sm={4} className="text-center invalidusr">Invalid user</Label>}
                 </FormGroup>
                 <FormGroup row>
                 <Label for="pass" sm={4}  className="text-center">Password</Label>
@@ -177,7 +183,8 @@ const mapStateToProps = (state) => {
 
  const mapDispatchToprops = (dispatch) => {
     return {
-        setuser : (user) => {dispatch(setuser(user))} 
+        setuser : (user) => {dispatch(setuser(user))},
+        setrole :(role) => {dispatch(setrole(role))}
     }
  }
 

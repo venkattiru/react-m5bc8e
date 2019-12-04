@@ -1,5 +1,6 @@
 const initState ={
-    user :''
+    user :'',
+    role:''
 }
 
 const reducer = (state = initState, action) => {
@@ -10,6 +11,13 @@ const reducer = (state = initState, action) => {
          
            ...state,
            user :action.payload
+
+          
+       } ;
+       case 'SET-ROLE': return {
+         
+           ...state,
+           role :action.payload
 
           
        } ;
