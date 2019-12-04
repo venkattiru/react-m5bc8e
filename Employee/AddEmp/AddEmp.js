@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 import Header from '../../Header/Header';
 import './AddEmp.css';
 import { connect } from 'react-redux';
+import $ from  'jquery'
 
 
 class AddEmp extends React.Component{
@@ -17,7 +18,7 @@ class AddEmp extends React.Component{
             name:'',
             Project:'',
             selgen:'',
-            SQ:'what is your pet name',
+            SQ:'What is your pet name',
             scAns:'',
             idDis :false
         }
@@ -42,9 +43,21 @@ class AddEmp extends React.Component{
             SQ:SQ,
             scAns:scAns,
             idDis:true
-          })
+          }) 
         }
+    }
 
+    componentDidMount(){
+      if(this.state.idDis == true){
+        $("#associateID").val(this.state.id);
+        $("#associateName").val(this.state.name);
+        $("#Project").val(this.state.Project);
+        $("input[value= "+this.state.selgen+"]").attr('checked',true);
+        $("#scQ").val(this.state.SQ);
+        $("#scA").val(this.state.scAns);
+
+      }
+    
     }
 
     handleChange =(event) =>{
@@ -82,12 +95,19 @@ class AddEmp extends React.Component{
     addDetails =()=>{
       
         const {id,name,Project,selgen,SQ,scAns} = this.state;
+         if(this.state.idDis == false){
         axios.post(`http://localhost:8020/addEmp`,{id,name,Project,selgen,SQ,scAns})
         .then(res => {
           console.log(res.data);
          
         })
-      
+         }else{
+axios.put(`http://localhost:8020/upEmp`,{id,name,Project,selgen,SQ,scAns})
+        .then(res => {
+          console.log(res.data);
+         
+         })
+         }
     }
     render(){
         return(
@@ -99,13 +119,13 @@ class AddEmp extends React.Component{
       <FormGroup row>
               <Label for="associateID" sm={4}  className="text-center">Associate ID</Label>
               <Col sm={4}>
-              <Input type="text" name="associateID" id="associateID" placeholder="Enter Associate ID" value={this.state.id} onChange={e  => this.handleChange} disabled={this.state.idDis}/>
+              <Input type="text" name="associateID" id="associateID" placeholder="Enter Associate ID" onChange={e  => this.handleChange(e)} disabled={this.state.idDis}/>
               </Col>
             </FormGroup>
             <FormGroup row>
               <Label for="associateName" sm={4} className="text-center">Associate Name</Label>
               <Col sm={4}>
-              <Input type="text" name="associateName" id="associateName" placeholder="Enter Associate Name" value ={this.state.name}onChange={e => this.handleName} />
+              <Input type="text" name="associateName" id="associateName" placeholder="Enter Associate Name" onChange={e => this.handleName(e)} />
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -113,12 +133,12 @@ class AddEmp extends React.Component{
               <Col sm={4}>
               <FormGroup check>
               <Label check>
-                <Input type="radio" name="gen" value="Male" checked ={this.state.selgen == 'Male' ?true:false} onChange={e => this.handlegen}/> Male
+                <Input type="radio" name="gen" value="Male"  onChange={e => this.handlegen(e)}/> Male
               </Label>
             </FormGroup>
             <FormGroup check>
               <Label check>
-                <Input type="radio" name="gen" value="Female" checked ={this.state.selgen == 'Female' ?true:false} onChange={e => this.handlegen}/> Female
+                <Input type="radio" name="gen" value="Female"  onChange={e => this.handlegen(e)}/> Female
               </Label>
             </FormGroup>
             </Col>
@@ -126,14 +146,14 @@ class AddEmp extends React.Component{
             <FormGroup row> 
               <Label for="Project" sm={4} className="text-center">Project</Label>
               <Col sm={4}>
-              <Input type="text" name="Project" id="Project" placeholder="Enter Project Name" value={this.state.Project} onChange={e => this.handleProj}/>
+              <Input type="text" name="Project" id="Project" placeholder="Enter Project Name"  onChange={e => this.handleProj(e)}/>
               </Col>
             </FormGroup>
             
             <FormGroup row>
               <Label for="scQ" className="text-center" sm={4}>Secret Question</Label>
               <Col sm={4}>
-              <Input type="select" name="secretQuestions" id="scQ" placeholder="Enter Project Name" value ={this.state.SQ} onChange={e => this.handleSQ} >
+              <Input type="select" name="secretQuestions" id="scQ" placeholder="Enter Project Name"  onChange={e => this.handleSQ(e)} >
                   <option value="What is your pet name">What is your pet name</option>
                   <option value="Who is your favourite cricket player">Who is your favourite cricket player</option>
                   <option value="Who is your best friend">Who is your best friend</option>
@@ -143,12 +163,12 @@ class AddEmp extends React.Component{
             <FormGroup row>
               <Label for="scA" className="text-center" sm={4}>Secret Answer</Label>
               <Col sm={4}>
-              <Input type="text" name="secretAns" id="scA" value={this.state.scAns} onChange={e => this.handleSQA}/>
+              <Input type="text" name="secretAns" id="scA"  onChange={e => this.handleSQA(e)}/>
               </Col>
             </FormGroup>
             <div className="row">
       <div className="col text-center">
-      <Button id="addEmpbt" color="warning" onClick={() => this.addDetails}>Submit</Button>
+      <Button id="addEmpbt" color="warning" onClick={() => this.addDetails()}>Submit</Button>
       </div>   
             </div>
             

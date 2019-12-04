@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser,faBullseye,faPowerOff } from "@fortawesome/free-solid-svg-icons";
+
 
 import {
     Collapse,
@@ -31,8 +34,8 @@ import './Header.css';
     
  }
    
- toggle = () => this.setState({isOpen : !this.state.isOpen});
-
+toggle = () => this.setState({isOpen : !this.state.isOpen});
+logout = ()=> this.props.history.push('/login');
 
 render(){
     let {user} = this.props;
@@ -40,7 +43,12 @@ render(){
   return(
       <div >
      
-        <header className="col-md-12 headerStyle" >Welcome {user}</header>
+        <header className="col-md-12 headerStyle" >Welcome {user}
+        <FontAwesomeIcon icon={faPowerOff} style={{float:'right',marginRight:'10',cursor:'pointer'}} onClick={this.logout}/>
+        <FontAwesomeIcon icon={faUser} style={{float:'right',marginRight:'10',cursor:'pointer'}}/>
+        
+       
+        </header>
       
     <div>
   <Navbar color="light" light expand="md">
@@ -63,7 +71,7 @@ render(){
           </DropdownMenu>
         </UncontrolledDropdown>
         <NavItem>
-          <NavLink  href='/organize'>Organization</NavLink>
+          <NavLink  tag={Link} to='/organize'>Organization</NavLink>
         </NavItem>
       </Nav>
     </Collapse>
